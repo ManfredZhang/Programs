@@ -133,7 +133,9 @@ int main()
     		cout << go.top();
     	go.pop();
     }
-    cout << ".";
+    if (Dmnum != 0)
+    	cout << ".";
+    int time = 0;
     while (Dmnum != 0)
     {
     	int temp = Dmnum * out;
@@ -155,10 +157,13 @@ int main()
     	Dmnum *= out;
     	while (Dmnum > 1 || Dmnum == 1)
     		Dmnum = Dmnum - 1;
-    	int time = 0;
+    	
     	time++;
-    	if (time > 10)
+    	if (time > 3)
+    	{
+    		cout << "...";
     		break;
+    	}
     }
     cout << endl;
 
