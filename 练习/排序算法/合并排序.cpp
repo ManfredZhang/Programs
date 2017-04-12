@@ -21,9 +21,9 @@ void Merge(int arr[], int p, int q, int r)
     right[num2] = N;//右数组末位等于无穷大
  
     int i = 0, j = 0;
-    for(int k = p; k != r + 1; ++k)
+    for (int k = p; k != r + 1; ++k)
     {
-        if(left[i] > right[j])
+        if (left[i] > right[j])
         {
             arr[k] = right[j];
             ++j;
