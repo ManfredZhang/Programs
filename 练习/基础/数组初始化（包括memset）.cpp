@@ -1,6 +1,7 @@
 //数组初始化的几种方法
 
 #include <iostream>
+#include <cstring> //memset函数在c++下的头文件
 using namespace std;
 int main()
 {
