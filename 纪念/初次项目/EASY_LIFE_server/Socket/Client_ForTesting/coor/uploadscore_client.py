@@ -1,22 +1,29 @@
 import socket
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-s.connect(('127.0.0.1', 8998))
-
+s.connect(('127.0.0.1', 8996))
+s.send('go')
 print(s.recv(1024).decode('utf-8'))
 
-s.send('create')
+s.send('upload_score')
 
 s.recv(1024)
 
-jing = 319.89
-wei = 621.814
+jing = 32.12123
+wei = 118.960491
 s.send('%lf' % jing)
 s.recv(1024)
 
 s.send('%lf' % wei)
-
 s.recv(1024)
+
+score = 66666
+
+s.send('%d' % score)
+
+print('%s' % s.recv(1024))
+
+
 
 s.send(b'exit')
 s.close()

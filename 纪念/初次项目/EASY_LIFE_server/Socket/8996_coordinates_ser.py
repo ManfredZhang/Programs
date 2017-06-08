@@ -258,11 +258,11 @@ def tcplink(sock, addr):
                         sock.send('go')
                         wei = sock.recv(1024)
                         wei = float(wei)
-                        
+
 
                         # 看看要删的坐标是否在数据库里
                         outcome = search_loc(jing,wei)
-                        
+
                         if outcome == 0:
                                 tempy = 0
                                 sock.send('%d' % tempy)
@@ -296,3 +296,5 @@ while True:
 
 # 关闭连接
 db.close()
+
+                          
