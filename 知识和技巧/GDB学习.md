@@ -30,7 +30,9 @@ r: 运行直到撞断点之前
 > 解决问题
 > Unable to find Mach task port for process-id 23330: (os/kern) failure (0x5).
 >  (please check gdb is codesigned - see taskgated(8))
->  全地址：codesign -s ...... /usr/local/bin/gdb
+>  全地址：codesign -s ...... /usr/local/bin/gdb 
+>
+> eg. codesign -s gdb_codesign/usr/local/bin/gdb
 
 n(next)：主函数内单步调试，不进入子函数里
 
