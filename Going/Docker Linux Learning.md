@@ -52,6 +52,8 @@ sudo apt-get --purge remove python-notify
 
 ```
 git init 	# 在本地创建
+git remote add origin git@github.com:yourName/yourRepo.git
+
 git clone https://github.com/ManfredZhang/Programs.git	# 从Github克隆
 ```
 
