@@ -1,7 +1,9 @@
 #include <iostream>
 #include <algorithm>
 #include <cmath>
-#include <iomanip>
+#include <iomanip>  
+#include <queue>    
+#include <cstring>  
 using namespace std;
 
 struct CoorStruct
