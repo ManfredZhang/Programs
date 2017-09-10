@@ -30,7 +30,7 @@ struct CoorStruct
 struct EdgeStruct{  
     int u, v;  
     double w;  
-}Edge[500000];  
+}Edge[500000];  e
   
 bool CMP(EdgeStruct e1, EdgeStruct e2)  
 {  
