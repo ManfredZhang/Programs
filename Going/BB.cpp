@@ -19,60 +19,64 @@ S棵卫星的存在允许存在S个连通分量；
   
 //可以使用更经常使用的向量形式加以实现；  
   
-int father[510]; //储存每个村庄的根；  
+int Pi[510]; //储存每个村庄的根；  
 double d[510]; //从大到小存储边的长度；  
 int m, k;  
-struct post  
+struct CoorStruct  
 {  
     double x, y;  
-}p[510];  
+}Coor[510];  
   
-struct edge{  
+struct EdgeStruct{  
     int u, v;  
     double w;  
-}e[500000];  
+}Edge[500000];  
   
-bool cmp(edge e1, edge e2)  
+bool CMP(EdgeStruct e1, EdgeStruct e2)  
 {  
     return e1.w < e2.w;  
 }  
   
-double dis(double x1, double y1, double x2, double y2)  
+double GET_DIS(double x1, double y1, double x2, double y2)  
 {  
-    return sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));  
+    return sqrt(pow((x1 - x2),2) + pow((y1 - y2),2));  
 }  
   
-void Init(int n)  
+void INIT(int n)  
 { //认己作父；  
     for (int i = 1; i <= n; i++)  
-        father[i] = i;  
+        Pi[i] = i;  
 }  
   
-int Find(int x)  
+int FIND(int x)  
 { //返回根节点；  
-    if (x != father[x])  
-        father[x] = Find(father[x]);  
-    return father[x];  
+    if (x != Pi[x])  
+        Pi[x] = FIND(Pi[x]);  
+    return Pi[x];  
 }  
   
-void Merge(int a, int b)  
+void MERGE(int a, int b)  
 { //合并两个集合；  
-    int p = Find(a);  
-    int q = Find(b);  
+    int p = FIND(a);  
+    int q = FIND(b);  
     if (p == q)  
-        return;  
-    father[p] = q;  
+        return;
+	else
+	{	
+		Pi[p] = q;
+		return;
+	}	
 }  
   
-void Kruskal(int n)  
+void KRUSKAL(int n)  
 { //将满足条件的边的长度放入数组d中；  
     k = 0;  
     for (int i = 0; i < m; i++)  
     {  
-        if (Find(e[i].u) != Find(e[i].v))  
+        if (FIND(Edge[i].u) != FIND(Edge[i].v))  
         {  
-            Merge(e[i].u, e[i].v);  
-            d[k++] = e[i].w;  
+            MERGE(Edge[i].u, Edge[i].v);  
+            d[k++] = Edge[i].w;  
             n--;  
             if (n == 1)  
                 return;  
@@ -82,33 +86,32 @@ void Kruskal(int n)
   
 int main()  
 {  
-    int t, S, P;  
+    int casenum, snum, pnum;  
     double x, y;  
-    cin >> t;  
-    while (t--)  
+    cin >> casenum;  
+    while (casenum--)  
     {  
         m = 0;  
-        cin >> S >> P;  
-        Init(P);  
-        for (int i = 1; i <= P; i++)  
+        cin >> snum >> pnum;  
+        INIT(pnum);  
+        for (int i = 1; i <= pnum; i++)  
+            cin >> Coor[i].x >> Coor[i].y;
+
+        for (int i = 1; i <= pnum; i++)  
         {  
-            cin >> p[i].x >> p[i].y;  
+            for (int j = i + 1; j <= pnum; j++)  
+            {
+                Edge[m].u = i;  
+                Edge[m].v = j;  
+                Edge[m++].w = GET_DIS(Coor[i].x, Coor[i].y, Coor[j].x, Coor[j].y);  
+                Edge[m].u = j;  
+                Edge[m].v = i;  
+                Edge[m++].w = Edge[m - 1].w; 
+			}
         }  
-        for (int i = 1; i <= P; i++)  
-        {  
-            for (int j = i + 1; j <= P; j++)  
-            { //相当于edges.push_back()；  
-                e[m].u = i;  
-                e[m].v = j;  
-                e[m++].w = dis(p[i].x, p[i].y, p[j].x, p[j].y);  
-                e[m].u = j;  
-                e[m].v = i;  
-                e[m++].w = dis(p[i].x, p[i].y, p[j].x, p[j].y);  
-            }  
-        }  
-        sort(e, e+m, cmp);  
-        Kruskal(P);  
-        cout << fixed << setprecision(2) << d[P - S - 1] << endl;  
+        sort(Edge, Edge+m, CMP);  
+        KRUSKAL(pnum);
+        cout << fixed << setprecision(2) << d[pnum - snum - 1] << endl;  
     }  
     return 0;  
 }  
