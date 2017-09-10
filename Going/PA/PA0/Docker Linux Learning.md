@@ -104,10 +104,11 @@ git diff --staged  #查看已add未commit的不同处
 git reset staged_file.c
 ```
 
-8. Checkout：回到某个commit之前的状态
+8. Checkout/reset：回到某个commit之前的状态
 
 ```
-git checkout -- octocat.txt    # Go ahead and get rid of all the changes since the last commit for octocat.txt
+git checkout -- octocat.txt		# Go ahead and get rid of all the changes since the last commit for octocat.txt
+git reset --hard 0e56174834		# 0e56174834从git log中找到想要回到的commit即可
 ```
 
 9. 创建-查看-进入-(修改后)合并-删除分支
