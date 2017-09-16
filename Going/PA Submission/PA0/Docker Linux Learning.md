@@ -7,7 +7,7 @@ docker start ics-vm
 ```
 
 ```
-ssh -p 20022 Manfred@127.0.0.1
+ssh -X -p 20022 Manfred@127.0.0.1
 ```
 
 ### 退出
