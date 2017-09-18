@@ -15,7 +15,7 @@ struct EdgeStruct
 int main()
 {
 	int n,m;  //顶点个数和边数
-	while(cin >> n >> m)
+	while(scanf("%d%d",&n,&m))
 	{
 	//构造Graph
 		if (m == 0 && n == 0)
@@ -27,7 +27,7 @@ int main()
 		for (int i = 1; i <= m; i++)
 		{
 			int u,v,d,p;
-			cin >> u >> v >> d >> p;
+			scanf("%d%d%d%d",&u,&v,&d,&p);
 			Edge.v = v;
 			Edge.dis = d;
 			Edge.price = p;
@@ -59,7 +59,7 @@ int main()
 			for (int i = 0; i < Graph[head].size(); i++)
 			{
 		//Relax
-				if (Dis[Graph[head][i].v] > Dis[head] + Graph[head][i].dis  || (Dis[Graph[head][i].v] == Dis[head] + Graph[head][i].dis && Price[head] + Graph[head][i].price < Price[Graph[head][i].v]))
+				if (Dis[Graph[head][i].v] > Dis[head] + Graph[head][i].dis  || ((Dis[Graph[head][i].v] == Dis[head] + Graph[head][i].dis) && (Price[head] + Graph[head][i].price < Price[Graph[head][i].v])))
 				{
 					Dis[Graph[head][i].v] = Dis[head] + Graph[head][i].dis;
 					Price[Graph[head][i].v] = Price[head] + Graph[head][i].price;
@@ -67,9 +67,8 @@ int main()
 				}
 			}
 		}
-		//for (int i = 1; i <= n; i++)
-		//	cout << Dis[i] << " " <<  Price[i] << endl;
-		cout << Dis[t] << " " << Price[t] << endl;
+		//cout << Dis[t] << " " << Price[t] << endl;
+		printf("%d %d\n",Dis[t],Price[t]);
 	}
 
 	return 0;
