@@ -41,8 +41,18 @@ sudo apt-get install xxx
 ```
 
 ```
-sudo apt-get --purge remove python-notify
+sudo apt-get --purge remove xxx
 ```
+
+### 搜索字符串
+
+```
+grep -r 'xxx'
+```
+
+
+
+
 
 
 
