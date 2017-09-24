@@ -8,8 +8,8 @@ int main()
   
     //方法一  
     //申请空间  
-    int ** a = new int *[row];  
-    for(int i = 0;i < row;i++)  
+    int **a = new int *[row];  
+    for (int i = 0; i < row; i++)  
         a[i] = new int[column]; 
 
     //方法二
@@ -18,9 +18,9 @@ int main()
 
   
     //使用空间  
-    for(int j = 0;j < row;j++)  
-        for(int k = 0;k< column;k++)  
-            a[j][k] = rand()%100;  
+    for(int i = 0; i < row; i++)  
+        for(int j = 0; j < column; j++)  
+            a[i][j] = rand()%100;  
   
     for(int j = 0;j < row;j++)  
     {  
