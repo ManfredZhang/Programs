@@ -2,6 +2,6 @@
 using namespace std;
 int main()
 {
-	cout << "hello!" << endl;
+	cout << "git commit -a" << endl;
 	return 0;
 }
