@@ -118,7 +118,7 @@ git reset staged_file.c
 
 ```
 git checkout -- octocat.txt		# Go ahead and get rid of all the changes since the last commit for octocat.txt
-git reset --hard 0e56174834		# 0e56174834从git log中找到想要回到的commit即可
+git reset --hard 0e56174834		# 0e56174834是从git log中找到想要回到的版本
 ```
 
 9. 创建-查看-进入-(修改后)合并-删除分支
