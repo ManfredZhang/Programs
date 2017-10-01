@@ -1,6 +1,6 @@
 # Docker Debian 使用学习
 
-### 进入
+##### 进入
 
 ```
 docker start ics-vm
@@ -10,7 +10,7 @@ docker start ics-vm
 ssh -X -p 20022 Manfred@127.0.0.1
 ```
 
-### 退出
+##### 退出
 
 ```
 exit
@@ -20,21 +20,21 @@ exit
 docker stop ics-vm
 ```
 
-### 拷贝文件
+##### 拷贝文件
 
-##### 拷入docker：
+拷入docker：
 
 ```
 scp -P 20022 name.suffix Manfred@127.0.0.1:/home/Manfred
 ```
 
-##### 拷出
+拷出
 
 ```
 scp -P 20022 Manfred@127.0.0.1:/home/Manfred/name.suffix .
 ```
 
-### 安装/卸载软件
+##### 安装/卸载软件
 
 ```
 sudo apt-get install xxx
@@ -44,15 +44,19 @@ sudo apt-get install xxx
 sudo apt-get --purge remove xxx
 ```
 
-### 搜索字符串
+##### 搜索字符串
 
 ```
 grep -r 'xxx'
 ```
 
+##### 中文显示
 
-
-
+```
+sudo apt-get install ttf-wqy-microhei	# 获取字体
+sudo apt-get install locales			# 安装locales
+sudo dpkg-reconfigure locales			# 设置系统的语言，选择zh_CN.UTF-8并设为默认即可
+```
 
 
 
