@@ -1,0 +1,8 @@
+0 0 0 -89 103  102 -77 65
+The GNU project is a remarkable achievement.
+189 95 48 25 13 7 4
+50 679
+11 504 rjaTCPjU
+8 48
+5 1 2 4 6 3
+35
