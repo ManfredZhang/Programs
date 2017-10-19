@@ -1,0 +1,16 @@
+[src/monitor/diff-test/diff-test.c,96,init_difftest] Connect to QEMU successfully
+[src/monitor/monitor.c,65,load_img] The image is /home/Manfred/ics2017/nexus-am/tests/cputest/build/dummy-x86-nemu.bin
+[src/monitor/monitor.c,30,welcome] Build time: 03:00:04, Oct 19 2017
+  100000:   bd 00 00 00 00                        movl $0x0,%ebp
+  100005:   bc 00 7c 00 00                        movl $0x7c00,%esp
+  10000a:   e8 01 00 00 00                        call 100010
+  100010:   55                                    pushl %ebp
+  100011:   89 e5                                 movl %esp,%ebp
+  100013:   83 ec 08                              subl $0x8,%esp
+  100016:   e8 05 00 00 00                        call 100020
+  100020:   55                                    pushl %ebp
+  100021:   89 e5                                 movl %esp,%ebp
+  100023:   31 c0                                 xorl %eax,%eax
+  100025:   5d                                    popl %ebp
+  100026:   c3                                    ret
+  10001b:   d6                                    nemu trap (eax = 0)
