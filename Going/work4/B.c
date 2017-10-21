@@ -38,12 +38,20 @@ int main()
         {
             scanf("%d%d",&a[i].x,&a[i].y);
         }
+
+
+
+
         int output=0;
         for(int i=n;i>=1;i--)
         {
             memset(vis,0,sizeof(vis));
             if(find(i))output++;
         }
+
+
+
+        
         printf("%d\n",output);
         int tt=0;
         for(int i=1;i<100050;i++)
