@@ -100,7 +100,7 @@ Disassembly of section .text:
   e7:	89 e5                	mov    %esp,%ebp
   e9:	89 e8                	mov    %ebp,%eax
   eb:	83 e8 1e             	sub    $0x1e,%eax
-  ee:	90                   	nop
+  ee:	90                   	nop  0xbfffee28 0xbfffee0e
   ef:	90                   	nop
   f0:	90                   	nop
   f1:	50                   	push   %eax
