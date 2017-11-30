@@ -98,19 +98,18 @@ Disassembly of section .text:
 000000e6 <do_phase>:
   e6:	55                   	push   %ebp
   e7:	89 e5                	mov    %esp,%ebp
-  e9:	ff 75 ee             	pushl  -0x12(%ebp)
-  ec:	90                   	nop
-  ed:	90                   	nop
-  ee:	e8 b0 ff ff ff       	call   a3 <QvrqHyZu>
-  f3:	83 c4 04             	add    $0x4,%esp
-  f6:	90                   	nop
-  f7:	90                   	nop
-  f8:	90                   	nop
-  f9:	90                   	nop
-  fa:	90                   	nop
-  fb:	90                   	nop
-  fc:	90                   	nop
-  fd:	90                   	nop
+  e9:	89 e8                	mov    %ebp,%eax
+  eb:	83 e8 1e             	sub    $0x1e,%eax
+  ee:	90                   	nop
+  ef:	90                   	nop
+  f0:	90                   	nop
+  f1:	50                   	push   %eax
+  f2:	90                   	nop
+  f3:	90                   	nop
+  f4:	90                   	nop
+  f5:	90                   	nop
+  f6:	e8 a8 ff ff ff       	call   a3 <QvrqHyZu>
+  fb:	83 c4 04             	add    $0x4,%esp
   fe:	90                   	nop
   ff:	90                   	nop
  100:	90                   	nop
