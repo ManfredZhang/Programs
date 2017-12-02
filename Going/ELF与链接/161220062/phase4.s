@@ -1,5 +1,5 @@
 
-lac_phase4.o:     file format elf32-i386
+phase4.o:     file format elf32-i386
 
 
 Disassembly of section .text:
