@@ -1,0 +1,1 @@
+/usr/bin/c++      CMakeFiles/HttpStatic.dir/hello.cc.o  -o HttpStatic -rdynamic 
