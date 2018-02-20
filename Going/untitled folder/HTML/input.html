@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>input and form</title>
+</head>
+<body>
+<input type="text" name="what">
+<input type="date" name="what">
+<input type="color" name="what">
+<input type="file" name="what">
+<input type="checkbox" name="what">
+<input type="radio" name="what">
+<input type="submit" name="what">
+
+<h1>Sign in</h1>
+
+<form action="http://www.baidu.com">
+
+<!-- action - where the form send data to -->
+<!-- method - what the HTTP method is (get/post) -->
+	<label>
+		Username:
+		<input type="text" placeholder="username" name="nname" required="true">
+	</label>
+	<label>
+		Password:
+		<input type="password" maxlength="10" minlength="5" placeholder="password" name="ppassword">
+	</label>
+	<label>
+		Password2:
+		<input type="password2" pattern=".{5,10}" required title="5 too 10 characters" placeholder="password" name="ppassword2">
+	</label>
+	<label>
+		Email:
+		<input type="email" placeholder="email" name="eemail" required="true">
+	</label>
+	
+	<input type="submit">
+	<!-- submit 后看URL的变化 -->
+</form>
+
+<form>
+	<label for="uname">USER:</label>
+	<label for="pword">PASS:</label>
+	<input id="uname" type="text">
+	<input id="pword" type="password">
+</form>
+</body>
+</html>

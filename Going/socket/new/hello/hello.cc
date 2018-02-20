@@ -7,10 +7,9 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <memory.h>
-
 #include <iostream>
 
-int key = -1;
+int servfd = -1;
 
 void interrupt (int signum)
 {
@@ -20,35 +19,33 @@ void interrupt (int signum)
 
 int main()
 {
-	key = socket(AF_INET, SOCK_STREAM, 0);
+	// 创建一个套接字
+	servfd = socket(AF_INET, SOCK_STREAM, 0);
 	signal(SIGINT, interrupt);
 
-	struct sockaddr_in server_address;
-	memset(&server_address, 0, sizeof(server_address));
+	struct sockaddr_in servaddr;
+	memset(&servaddr, 0, sizeof(servaddr));
+	servaddr.sin_family = AF_INET;
+	servaddr.sin_port = htons(8080);
+	servaddr.sin_addr.s_addr = htonl(INADDR_ANY);
 
-	server_address.sin_family = AF_INET;
-	server_address.sin_port = htons(8080);
-	server_address.sin_addr.s_addr = htonl(INADDR_ANY);
+	// 将套接字绑定到一个特殊的地址上
+	bind(servfd, (struct sockaddr*)&servaddr, sizeof(servaddr));
 
-	bind(key, (struct sockaddr*)&server_address, sizeof(server_address));
+	// 监听套接字
+	listen(servfd, 50);
 
+	// 服务器在线后开始收发数据
+	struct sockaddr_in client_addr;
+	socklen_t length = sizeof(client_addr);
 
-
-	listen(key, 50);
-	struct sockaddr_in client_address;
-	socklen_t length = sizeof(client_address);
-
-	int connect = -1;
-	while ((connect = accept(key, (struct sockaddr*)&client_address, &length)) != -1)
+	int conn = -1;
+	while ((conn = accept(servfd, (struct sockaddr*)&client_addr, &length)) != -1)
 	{	
-		const char response[] = 
-			"HTTP/1.1 200 OK\r\n"
-			"Content-Length: 20\r\n"
-			"\r\n"
+		const char response[] = "HTTP/1.1 200 OK\r\n" "Content-Length: 20\r\n" "\r\n" 
 			"<h2>Hello World</h2>\n";
-		[[maybe_unused]]
-			int len = write(connect, response, sizeof(response));
-		close(connect);
+		int len = write(conn, response, sizeof(response));
+		close(conn);
 	}
 
 	return 0;
