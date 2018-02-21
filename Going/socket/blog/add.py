@@ -1,7 +1,6 @@
 import re
 from socket import *
 
-# http://127.0.0.1:8080/login.do?username=wierton&passwd=123456
 def parse_header(raw_data):
     if not '\r\n\r\n' in raw_data:
         print('Unable to parse the data:{}.'.format(raw_data))
@@ -15,25 +14,14 @@ def parse_header(raw_data):
     method, path = ma.groups()
     if path[0] == '/':
         path = path[1:]
-    lis = path.split('?')
-    lis.append('')
-    rfile, query_string = lis[0:2]
-    params = [tuple((param+'=').split('=')[0:2])
-            for param in query_string.split('&')]
-    
-    ma_headers = re.findall(r'^\s*(.*?)\s*:\s*(.*?)\s*\r?$', headers, re.M)
-    headers = {item[0]:item[1] for item in ma_headers}
-    print("version\t: 1.1")
-    print("method\t: {}".format(method))
-    print("path\t: {}".format(rfile))
-    print("params\t: {}".format(params))
-    print("headers\t: {}".format(headers))
-    return params
+    lis = path.split('/')
+    return lis
 
 def handle_request(request):
-    #print(request)
-    return parse_header(request)[0][0]
-    #return 'Welcome to wiertons site'
+    lis = parse_header(request)
+    temp = int(lis[1]) + int(lis[2])
+    # return "%d + %d = {}".format(str(temp))
+    return lis[1] + " + " + lis[2] + " = " + str(temp)
 
 s = socket(AF_INET, SOCK_STREAM)
 s.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
