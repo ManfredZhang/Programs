@@ -20,7 +20,6 @@ def parse_header(raw_data):
 def handle_request(request):
     lis = parse_header(request)
     temp = int(lis[1]) + int(lis[2])
-    # return "%d + %d = {}".format(str(temp))
     return lis[1] + " + " + lis[2] + " = " + str(temp)
 
 s = socket(AF_INET, SOCK_STREAM)
