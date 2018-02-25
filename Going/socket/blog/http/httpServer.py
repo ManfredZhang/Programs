@@ -5,7 +5,7 @@ import socket
 import re
 
 HOST = ''
-PORT = 8000
+PORT = 8080
 
 #Read index.html, put into HTTP response data
 index_content = '''
@@ -18,6 +18,9 @@ file = open('index.html', 'r')
 index_content += file.read()
 file.close()
 
+
+
+
 #Read reg.html, put into HTTP response data
 reg_content = '''
 HTTP/1.x 200 ok
@@ -28,6 +31,21 @@ Content-Type: text/html
 file = open('reg.html', 'r')
 reg_content += file.read()
 file.close()
+
+
+
+
+#Read a.css, put into HTTP response data
+css_content = '''
+HTTP/1.x 200 ok
+Content-Type: text/css
+
+'''
+
+file = open('a.css', 'r')
+css_content += file.read()
+file.close()
+
 
 #Read picture, put into HTTP response data
 file = open('T-mac.jpg', 'rb')
@@ -65,6 +83,8 @@ while True:
             content = pic_content
         elif src == '/reg.html':
             content = reg_content
+        elif src == '/a.css':
+            content = css_content
         elif re.match('^/\?.*$', src):
             entry = src.split('?')[1]      # main content of the request
             content = 'HTTP/1.x 200 ok\r\nContent-Type: text/html\r\n\r\n'
