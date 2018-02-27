@@ -2,7 +2,7 @@
 
 h1 {
 	color: red;
-	border-color: rgba(255,0,255,0.1);
+	border-color: rgba(255,255,255,0.1);
 	border-width: 5px;
 	border-style: solid;
 	font-family: "Georgea";
@@ -41,7 +41,7 @@ body {
 /*	background: url(http://cpsresources.com/wp-content/uploads/2014/12/9436-Matte-Woodgrain-Matte.jpg);
 	background-repeat: no-repeat;
 	background-size: cover; */
-	background-color: #FFF0F5;
+	background-color: blue;
 	/* opacity:0.5; */
 	font-family: "Times New Roman";
 	margin: auto 2% auto 2%;
