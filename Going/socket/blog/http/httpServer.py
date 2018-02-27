@@ -19,9 +19,10 @@ def insert(NAMEin,PASSWORDin):
     except:
         db.rollback()
 
-def search_name(NAMEin):
-    sql = "SELECT * FROM USERS WHERE NAME = '%s'" % (NAMEin)
+def search(NAMEin):
+    sql = "SELECT * FROM USERINF WHERE name = '%s'" % (NAMEin)
     try:
+            print sql
             cursor.execute(sql)
             results = cursor.fetchall()
             if results:
@@ -31,6 +32,17 @@ def search_name(NAMEin):
     except:
             print "Error: unable to fecth data"
 
+def verify(NAMEin,PASSWORDin):
+    sql = "SELECT * FROM USERINF WHERE name = '%s' and password = '%s'" % (NAMEin, PASSWORDin)
+    try:
+        cursor.execute(sql)
+        results = cursor.fetchall()
+        if results:
+            return 1
+        else:
+            return 0
+    except:
+        print "Error: unable to fecth data"
 
 HOST = ''
 PORT = 8000
@@ -127,17 +139,20 @@ while True:
         form = request.split('\r\n')
         entry = form[-1]      # main content of the request
         content = 'HTTP/1.x 200 ok\r\nContent-Type: text/html\r\n\r\n'
-        content += entry
-        content += '<br /><font color="green" size="7">register successs!</p>'
+        #content += entry
         big = entry.split('&')
         user = big[0].split('=')
         pw = big[1].split('=')
-        #insert(user[1], pw[1])
-        exist_or_not = search(user[1],pw[1])
-        if exist_or_not == true:
-            content += 'yes'
+        exist_or_not = search(user[1])
+        if exist_or_not == 1:
+            pw_correct = verify(user[1], pw[1])
+            if pw_correct == 1:
+                content += 'username exist and password correct, you are in'
+            else:
+                content += 'username exist but wrong password, try again'
         else:
-            content += 'no'
+            content += 'welcome to join us, register success'
+            insert(user[1], pw[1])
         
     
     ######
@@ -152,5 +167,3 @@ while True:
     
     #close connection
     conn.close()
-
-    db.close()
