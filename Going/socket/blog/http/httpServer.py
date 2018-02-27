@@ -5,7 +5,7 @@ import socket
 import re
 
 HOST = ''
-PORT = 8080
+PORT = 8000
 
 #Read index.html, put into HTTP response data
 index_content = '''
