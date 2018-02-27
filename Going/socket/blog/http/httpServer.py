@@ -19,6 +19,18 @@ def insert(NAMEin,PASSWORDin):
     except:
         db.rollback()
 
+def search_name(NAMEin):
+    sql = "SELECT * FROM USERS WHERE NAME = '%s'" % (NAMEin)
+    try:
+            cursor.execute(sql)
+            results = cursor.fetchall()
+            if results:
+                    return 1
+            else:
+                    return 0
+    except:
+            print "Error: unable to fecth data"
+
 
 HOST = ''
 PORT = 8000
@@ -120,7 +132,12 @@ while True:
         big = entry.split('&')
         user = big[0].split('=')
         pw = big[1].split('=')
-        insert(user[1], pw[1])
+        #insert(user[1], pw[1])
+        exist_or_not = search(user[1],pw[1])
+        if exist_or_not == true:
+            content += 'yes'
+        else:
+            content += 'no'
         
     
     ######
@@ -135,3 +152,5 @@ while True:
     
     #close connection
     conn.close()
+
+    db.close()
