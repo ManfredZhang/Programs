@@ -3,6 +3,22 @@
 
 import socket
 import re
+import time
+import threading
+import MySQLdb
+
+db = MySQLdb.connect("localhost","root","zhang","abc" )
+
+cursor = db.cursor()
+
+def insert(NAMEin,PASSWORDin):
+    sql = "INSERT INTO USERINF (name, password) VALUES ('%s', '%s')" % (NAMEin, PASSWORDin)
+    try:
+        cursor.execute(sql)
+        db.commit()
+    except:
+        db.rollback()
+
 
 HOST = ''
 PORT = 8000
@@ -101,6 +117,11 @@ while True:
         content = 'HTTP/1.x 200 ok\r\nContent-Type: text/html\r\n\r\n'
         content += entry
         content += '<br /><font color="green" size="7">register successs!</p>'
+        big = entry.split('&')
+        user = big[0].split('=')
+        pw = big[1].split('=')
+        insert(user[1], pw[1])
+        
     
     ######
     # More operations, such as put the form into database
