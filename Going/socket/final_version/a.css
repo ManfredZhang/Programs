@@ -1,0 +1,24 @@
+/* ELement */
+
+h1 {
+	color: blue;
+	border-color: rgba(255,255,255,0.1);
+	border-width: 5px;
+	border-style: solid;
+	font-family: "Georgea";
+	font-size: 50px;
+	padding: 1%;
+	text-align: center;
+}
+
+
+body {
+/*	background: url(http://cpsresources.com/wp-content/uploads/2014/12/9436-Matte-Woodgrain-Matte.jpg);
+	background-repeat: no-repeat;
+	background-size: cover; */
+	background-color: rgba(0,0,122,0.2);
+	/* opacity:0.5; */
+	font-family: "Times New Roman";
+	margin: auto 2% auto 2%;
+	font-size: 20px;
+}
