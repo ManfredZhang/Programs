@@ -43,6 +43,8 @@ def verify(NAMEin,PASSWORDin):
             return 0
     except:
         print "Error: unable to fecth data"
+    
+
 
 HOST = ''
 PORT = 8000
@@ -55,7 +57,8 @@ Content-Type: text/html
 '''
 
 file = open('index.html', 'r')
-index_content += file.read()
+indexx_content = file.read()
+index_content += indexx_content
 file.close()
 
 
@@ -148,11 +151,11 @@ while True:
             pw_correct = verify(user[1], pw[1])
             if pw_correct == 1:
                 #content += 'username exist and password correct, you are in'
-                content += index_content
+                content += indexx_content
             else:
                 content += 'username exist but wrong password, try again'
         else:
-            content += '<a href="https://127.0.0.1:8000/index.html">welcome to join us, register success, view our web site</a>'
+            content += 'welcome to join us, register success'
             insert(user[1], pw[1])
     
     else:

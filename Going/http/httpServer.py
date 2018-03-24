@@ -43,6 +43,8 @@ def verify(NAMEin,PASSWORDin):
             return 0
     except:
         print "Error: unable to fecth data"
+    
+
 
 HOST = ''
 PORT = 8000
@@ -55,7 +57,8 @@ Content-Type: text/html
 '''
 
 file = open('index.html', 'r')
-index_content += file.read()
+indexx_content = file.read()
+index_content += indexx_content
 file.close()
 
 
@@ -97,6 +100,15 @@ Content-Type: image/jpg
 pic_content += file.read()
 file.close()
 
+file = open('project.pptx', 'rb')
+pptx_content = '''
+HTTP/1.x 200 ok
+Content-Type: application/ vnd.openxmlformats-officedocument.presentationml.presentation
+
+'''
+pptx_content += file.read()
+file.close()
+
 
 
 #Configure socket
@@ -125,6 +137,8 @@ while True:
             content = reg_content
         elif src == '/a.css':
             content = css_content
+        elif src == '/project.pptx':
+            content = pptx_content
         elif re.match('^/\?.*$', src):
             entry = src.split('?')[1]      # main content of the request
             content = 'HTTP/1.x 200 ok\r\nContent-Type: text/html\r\n\r\n'
@@ -148,11 +162,11 @@ while True:
             pw_correct = verify(user[1], pw[1])
             if pw_correct == 1:
                 #content += 'username exist and password correct, you are in'
-                content += index_content
+                content += indexx_content
             else:
                 content += 'username exist but wrong password, try again'
         else:
-            content += '<a href="https://127.0.0.1:8000/index.html">welcome to join us, register success, view our web site</a>'
+            content += 'welcome to join us, register success'
             insert(user[1], pw[1])
     
     else:
