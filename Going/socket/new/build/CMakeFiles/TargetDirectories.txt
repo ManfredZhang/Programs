@@ -1,8 +1,0 @@
-/home/zmf/Documents/Programs/Going/socket/new/build/CMakeFiles/edit_cache.dir
-/home/zmf/Documents/Programs/Going/socket/new/build/CMakeFiles/rebuild_cache.dir
-/home/zmf/Documents/Programs/Going/socket/new/build/hello/CMakeFiles/edit_cache.dir
-/home/zmf/Documents/Programs/Going/socket/new/build/hello/CMakeFiles/rebuild_cache.dir
-/home/zmf/Documents/Programs/Going/socket/new/build/hello/CMakeFiles/HttpStatic.dir
-/home/zmf/Documents/Programs/Going/socket/new/build/add/CMakeFiles/edit_cache.dir
-/home/zmf/Documents/Programs/Going/socket/new/build/add/CMakeFiles/rebuild_cache.dir
-/home/zmf/Documents/Programs/Going/socket/new/build/add/CMakeFiles/HttpServer.dir
