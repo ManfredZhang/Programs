@@ -7,9 +7,9 @@
 #include <stdint.h>
 
 #define BLOCK_SIZE 24
-extern void *sbrk(intptr_t increment);
-extern int brk(void *addr);
-pthread_mutex_t mutex;
+extern void *sbrk(intptr_t increment);//
+extern int brk(void *addr);//
+pthread_mutex_t mutex;//
 void *first_block = NULL;
 
 typedef struct s_block *t_block;
@@ -20,7 +20,7 @@ struct s_block {
 	int free;     /* 是否是空闲块 */
 	int padding;  /* 填充4字节，保证meta块长度为8的倍数 */
 	void *ptr;    /* Magic pointer，指向data */
-	char data[1]  /* 这是一个虚拟字段，表示数据块的第一个字节，长度不应计入meta */
+	char data[1];  /* 这是一个虚拟字段，表示数据块的第一个字节，长度不应计入meta */
 };
 
 t_block extend_heap(t_block last, size_t s) {
