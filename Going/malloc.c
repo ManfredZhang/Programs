@@ -6,6 +6,10 @@
 #include <unistd.h>
 #include <stdint.h>
 
+//=========================================================
+// code refers to http://blog.codinglabs.org/articles/a-malloc-tutorial.html#1-
+//=========================================================
+
 #define BLOCK_SIZE 24
 extern void *sbrk(intptr_t increment);
 extern int brk(void *addr);
@@ -23,6 +27,7 @@ struct s_block {
 	char data[1]  /* 这是一个虚拟字段，表示数据块的第一个字节，长度不应计入meta */
 };
 
+// 在堆区的顶部以上创造一个新的满足要求的block
 t_block extend_heap(t_block last, size_t s) {
 	t_block b = sbrk(0);
 	if(sbrk(BLOCK_SIZE + s) == (void *)-1) return NULL;
@@ -33,6 +38,8 @@ t_block extend_heap(t_block last, size_t s) {
 	return b;
 }
 
+// 从第一块block开始找有没有足够的大的block用于分配
+// 并且维护一个last指针指向已经看完的地方
 t_block find_block(t_block *carry_block, size_t size) {
 	t_block b = first_block;
 	while(b && !(b->free == 1 && b->size >= size)) {
@@ -42,11 +49,13 @@ t_block find_block(t_block *carry_block, size_t size) {
 	return b;
 }
 
+// 8字节对齐
 size_t align8(size_t s) {
 	if(s & 0x7 == 0) return s;
 	else return ((s >> 3) + 1) << 3;
 }
 
+// 将分配后未利用到的区域新立为一个block
 void split_block(t_block b, size_t s) {
 	t_block new;
 	new = b->data + s;
@@ -84,22 +93,16 @@ void* malloc_unsafe(size_t size) {
     return b->data;
 }
 
-
-
-
-
-
-
-
+////////////////////////////////////////////////////////////
 
 t_block get_block(void *p) {
-    char *tmp;  
-    tmp = p;
+    char *tmp = p;
     return (p = tmp -= BLOCK_SIZE);
 }
 
+// 如果发现一个block的下一个也是free的，则将它们合并
 t_block fusion(t_block b) {
-    if (b->next && b->next->free) {
+    if (b->next->free) {
         b->size += BLOCK_SIZE + b->next->size;
         b->next = b->next->next;
         if(b->next)
@@ -108,14 +111,14 @@ t_block fusion(t_block b) {
     return b;
 }
 
+// 检查前后的block是否要合并
 void free_unsafe(void *ptr) {
-    t_block b;
-    b = get_block(ptr);
+    t_block b = get_block(ptr);
     b->free = 1;
+
     if (b->prev && b->prev->free)
     	b = fusion(b->prev);
-    if (b->next)
-    	fusion(b);
+    if (b->next) fusion(b);
     else {
     	if(b->prev)
             b->prev->prev = NULL;
