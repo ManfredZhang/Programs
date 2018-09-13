@@ -1,3 +1,13 @@
+#zmf
+# 使zsh为默认shell
+# chsh -s `which zsh` 
+# 安装oh-my-zsh
+# git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+# 安装zsh插件
+# git clone git://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions"	
+# git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/plugins/zsh-syntax-highlighting"
+#fmz
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -59,12 +69,10 @@ plugins=(git z d zsh-autosuggestions zsh-syntax-highlighting extract)
 # d:	view direction history and type the num to jump
 #		eg. "$ d" "$ 3"
 # zsh-autosuggestions:	as it said
-#		install: "$ git clone git://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions"	
 # zsh-syntax-highlighting:	as it said
-#		install: "$ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/plugins/zsh-syntax-highlighting"
 # extract:	unzip
 #		eg. "$ x bbbb.zip"
-#zmf
+#fmz
 
 source $ZSH/oh-my-zsh.sh
 source ~/.bash_profile
@@ -99,9 +107,3 @@ source ~/.bash_profile
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
 alias b="cd .."
-
-# pyenv 的环境变量
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-export PATH=$PATH:/sbin/
-eval "$(pyenv init -)"
