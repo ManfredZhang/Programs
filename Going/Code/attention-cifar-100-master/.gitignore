@@ -1,0 +1,15 @@
+# Bytecode compiled python files
+*.pyc
+
+# Swap file
+*.swp
+
+# Trained model
+*.pkl
+
+# Text file
+*.txt
+
+# Data directory
+data
+
